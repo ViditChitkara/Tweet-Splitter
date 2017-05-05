@@ -1,0 +1,11 @@
+<% unless current_user.nil? %>
+
+	<%= form_tag '/',:id => "tweet_form" do%>
+		<%= text_area_tag 'tweet' %>
+		<%= submit_tag 'Tweet' %>
+	<% end %>
+
+	<div id="split_tweet"></div>
+
+<% end %>
+
