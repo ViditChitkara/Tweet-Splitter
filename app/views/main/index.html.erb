@@ -1,8 +1,14 @@
-<% unless current_user.nil? %>
+<% if current_user.nil? %>
+	<div class="container jumbotron">
+	  <h1>Welcome to Tweet Splitter</h1>
+	  <p>You need to login to use TweetSplitter</p>
+	  <p><a class="btn btn-primary btn-lg" href="/auth/twitter" role="button">Signin with twitter</a></p>
+	</div>
+<% else current_user.nil? %>
 
-	<%= form_tag '/',:id => "tweet_form" do%>
-		<%= text_area_tag 'tweet' %>
-		<%= submit_tag 'Tweet' %>
+	<%= form_tag '/',:id => "tweet_form",:class=>"container" do%>
+		<%= text_area_tag 'tweet' ,nil,:class=>"form-control" ,:rows=>"20"%>
+		<button type="submit" class="btn btn-default">Post the following splitted tweets</button>
 	<% end %>
 
 	<div id="split_tweet"></div>
