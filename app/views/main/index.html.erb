@@ -7,11 +7,11 @@
 <% else current_user.nil? %>
 
 	<%= form_tag '/',:id => "tweet_form",:class=>"container" do%>
-		<%= text_area_tag 'tweet' ,nil,:class=>"form-control" ,:rows=>"20"%>
+		<%= text_area_tag 'tweet' ,nil,:class=>"form-control" ,:rows=>"5"%>
 		<button type="submit" class="btn btn-default">Post the following splitted tweets</button>
 	<% end %>
 
-	<div id="split_tweet"></div>
+	<div id="split_tweet" class="container"></div>
 
 <% end %>
 

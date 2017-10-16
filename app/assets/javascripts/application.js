@@ -21,7 +21,8 @@ $(document).ready(function(){
 	var tweetSoFar="";
 	var tweet = $('#tweet');
 	var arr = new Array();
-	tweet.keyup(function(event){
+	const LEN = 130;
+	tweet.bind("input change",function(event){
 		var s = $("#tweet").val();
 		var i;
 		var split_tweet = document.getElementById("split_tweet");
@@ -30,17 +31,22 @@ $(document).ready(function(){
 		while(split_tweet.childNodes.length>0){
 			split_tweet.removeChild(split_tweet.childNodes[0]);
 		}
-
-		for(i=0; i<s.length ;i=i+140){
+		var counter = 1;
+		var total = parseInt(s.length/LEN);
+		if(s.length%LEN!=0){
+			total+=1;
+		}
+		for(i=0; i<s.length ;i=i+LEN){
 			var newElem = document.createElement("p");
-			if(s.length>=140){
-				arr.push(s.substring(i,i+140));
-				newElem.innerHTML = s.substring(i,i+140);
+			if(s.length>=LEN){
+				arr.push(s.substring(i,i+LEN)+" ("+counter+"/"+total+")");
+				newElem.innerHTML = s.substring(i,i+LEN)+" ("+counter+"/"+total+")";
 			}
 			else{
-				arr.push(s.substring(i,i+140));
-				newElem.innerHTML = s.substring(i);	
+				arr.push(s.substring(i,i+LEN)+" ("+counter+"/"+total+")");
+				newElem.innerHTML = s.substring(i)+" ("+counter+"/"+total+")";	
 			}
+			counter+=1;
 			document.getElementById("split_tweet").appendChild(newElem);
 		}
 	});
